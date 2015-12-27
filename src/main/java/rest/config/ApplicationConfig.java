@@ -1,8 +1,6 @@
 package rest.config;
 
-import rest.RouteRest;
-import rest.TestRest;
-import rest.UserRest;
+import rest.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
@@ -22,9 +20,12 @@ public class ApplicationConfig extends Application {
      * Method contains java classes which are included to ReST service
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(DataRest.class);
         resources.add(TestRest.class);
+        resources.add(DeprecatedRouteRest.class);
         resources.add(RouteRest.class);
         resources.add(UserRest.class);
+        resources.add(AdminRest.class);
     }
 
 }

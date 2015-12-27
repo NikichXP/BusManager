@@ -1,95 +1,70 @@
 package rest;
 
 import com.google.gson.Gson;
+import dao.BusDAO;
+import dao.RouteDAO;
 import dao.entity.RouteEntity;
 
 import javax.ws.rs.*;
-import java.util.ArrayList;
 
 @Path("route")
 public class RouteRest {
 
-    private static ArrayList<RouteEntity> routes = new ArrayList<>();
-
     private static Gson gson = new Gson();
+    private static RouteDAO dao = RouteDAO.getInstance();
+    private static DataContainer dc = DataContainer.getInstance();
 
     @GET
-    @Path("create")
-    public String createRoute (@QueryParam("fromx")String fromx, @QueryParam("tox")String tox,
-                               @QueryParam("fromy")String fromy, @QueryParam("toy")String toy,
-                               @QueryParam("token") String token) {
-        try {
-            routes.add(new RouteEntity(Double.parseDouble(fromx), Double.parseDouble(fromy), Double.parseDouble(tox),
-                    Double.parseDouble(toy), token));
-        } catch (NumberFormatException ex) {
-            return gson.toJson(new Error("NumberFormatException" + ex.toString()));
-        } catch (Exception e) {
-            return gson.toJson(new Error(e.toString()));
-        }
-        for (RouteEntity r : routes) {
-            if (token.equals(r.getToken())) {
-                return gson.toJson(r);
+    @Path("start")
+    public String startRoute (@QueryParam("from")String from, @QueryParam("busid")String carid,
+                              @QueryParam("token") String token, @QueryParam("tripnumber") String tripid, @QueryParam("to") String to) {
+        /*
+
+        <!--- This is for future release ---!>
+
+        if (DataContainer.checkToken(token)) {
+            RouteEntity ent = RouteDAO.getRoute(routeid);
+            if (ent == null) {
+                return gson.toJson(new Error ("Wrong id"));
             }
+            ent.setToken(token);
+            ent.setCar(BusDAO.getBus(carid));
+            DataContainer.addActiveRoute(ent);
+            return gson.toJson(ent);
         }
-        return gson.toJson(new Error("Unknown fail"));
+        return gson.toJson(new Error ("Wrong token"));
+        */
+        RouteEntity ent = new RouteEntity(Integer.parseInt(tripid), Integer.parseInt(from), Integer.parseInt(to));
+        ent.setToken(token);
+        ent.setCar(BusDAO.getBus(carid));
+        dc.addActiveRoute(ent);
+        return gson.toJson(ent);
     }
 
     @GET
     @Path("get")
-    /**
-     * Names of passengers and coordinates
-     */
-    public String routeGet (@QueryParam("token")String token) {
-        for (RouteEntity r : routes) {
-            if (token.equals(r.getToken())) {
-                return gson.toJson(r);
-            }
+    public String getRoute (@QueryParam("token")String token) {
+        if (!DataContainer.checkToken(token)) {
+            return gson.toJson(new Error ("Auth failed"));
         }
-        return gson.toJson(new Error("No such token registered"));
+        RouteEntity ent = dc.getRoute(token);
+        if (ent == null) {
+            return gson.toJson(new Error ("No such route with this token"));
+        }
+        return gson.toJson(ent);
     }
 
     @GET
-    @Path("addStop")
-    public String addPassenger (@QueryParam("token")String token, @QueryParam("x")String x, @QueryParam("y")String y,
-                                @QueryParam("name")String name) {
-        try {
-            for (RouteEntity r : routes) {
-                if (token.equals(r.getToken())) {
-                    r.addStop(name, Double.parseDouble(x), Double.parseDouble(y));
-                    return gson.toJson(r);
-                }
-            }
-        } catch (NumberFormatException ex) {
-            return gson.toJson(new Error(ex.toString()));
-        }
-        catch (Exception e) {
-            return gson.toJson(new Error("Unknown response"));
-        }
-        return gson.toJson(new Error("No such token"));
+    @Path("addclient")
+    public String addClient (@QueryParam("token")String token, @QueryParam("seatnumber")String seatNumber) {
+        DataContainer.getRoute(token).addClient(Integer.parseInt(seatNumber));
+        return gson.toJson(new Error ("Success"));
     }
 
     @GET
-    @Path("removeclient")
-    public String removePassenger (@QueryParam("token")String token, @QueryParam("name")String name) {
-        for (RouteEntity r : routes) {
-            if (token.equals(r.getToken())) {
-                r.removePassenger(name);
-                return gson.toJson(r);
-            }
-        }
-        return gson.toJson(new Error("Unknown fail"));
+    @Path("deleteclient")
+    public String deleteClient (@QueryParam("token")String token, @QueryParam("seatnumber")String seatNumber) {
+        DataContainer.getRoute(token).removeClient(Integer.parseInt(seatNumber));
+        return gson.toJson(new Error ("Success"));
     }
-
-    @GET
-    @Path ("endroute")
-    public String endRoute (@QueryParam("token") String token) {
-        for (int i = 0; i < routes.size(); i++) {
-            if (token.equals(routes.get(i))) {
-                routes.remove(i);
-                return "road ends";
-            }
-        }
-        return gson.toJson(new Error("Unknown fail"));
-    }
-
 }

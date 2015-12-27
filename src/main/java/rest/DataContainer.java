@@ -1,5 +1,7 @@
 package rest;
 
+import dao.entity.OldRouteEntity;
+import dao.entity.RouteEntity;
 import dao.entity.UserEntity;
 
 import javax.ejb.*;
@@ -10,6 +12,7 @@ public class DataContainer {
 
     private static ArrayList<String> activeTokens = new ArrayList<>();
     private static ArrayList<UserEntity> associatedUsers = new ArrayList<>();
+    private static ArrayList<RouteEntity> activeRoutes = new ArrayList<>();
 
     public static String userToken (UserEntity user, String token) {
 
@@ -55,6 +58,19 @@ public class DataContainer {
         for (int i = 0; i < activeTokens.size(); i++) {
             if (activeTokens.get(i).equals(token)) {
                 return associatedUsers.get(i);
+            }
+        }
+        return null;
+    }
+
+    public static void addActiveRoute(RouteEntity ent) {
+        activeRoutes.add(ent);
+    }
+
+    public static RouteEntity getRoute(String token) {
+        for (RouteEntity route : activeRoutes) {
+            if (route.getToken().equals(token)) {
+                return route;
             }
         }
         return null;

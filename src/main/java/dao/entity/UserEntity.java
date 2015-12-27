@@ -16,6 +16,7 @@ public class UserEntity {
     private int capacity;
     private String token;
 
+    @Deprecated
     public UserEntity (int id, String login, String password, String name, String surname,
                       String car, String plate, int capacity) {
         this.id = id;
