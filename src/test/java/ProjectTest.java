@@ -50,7 +50,7 @@ public class ProjectTest {
 	}
 
 	@Test 
-	void adminTest () { 
+	public void adminTest () { 
 		AdminRest rest = mock(AdminRest.class); 
 		when(rest.createBus("TATA", "53")).thenReturn("Success!"); 
 		assertEquals("Success", rest); 
