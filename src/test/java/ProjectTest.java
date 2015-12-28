@@ -53,6 +53,6 @@ public class ProjectTest {
 	public void adminTest () { 
 		AdminRest rest = mock(AdminRest.class); 
 		when(rest.createBus("TATA", "53")).thenReturn("Success!"); 
-		assertEquals("Success", rest.createBus("TATA", "53")); 
+		assertEquals("Success!", rest.createBus("TATA", "53")); 
 	}
 }
