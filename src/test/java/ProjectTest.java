@@ -14,10 +14,10 @@ public class ProjectTest {
 
 	@Test
 	public void usersNotEqual() {
-		UserDAO dao = mock(UserDAO.class);
-		when(UserDAO.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
+		UserDAO mock = mock(UserDAO.class);
+		when(mock.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
 		UserEntity u1 = new UserEntity(2, "Vasya", "vasss", "Vasya", "Clean", "Volga", "AA5555AA", 1, "sometoken");
-		UserEntity u2 = UserDAO.getUser("admin", "adminpass");
+		UserEntity u2 = mock.getUser("admin", "adminpass");
 		assertNotEquals(u1.getId(), u2.getId());
 	}
 
