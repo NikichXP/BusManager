@@ -31,6 +31,18 @@ public class UserEntity {
         DataContainer.addToken(this.token, this);
     }
 
+	/**
+	 *
+     * @param id
+     * @param login
+     * @param password
+     * @param name
+     * @param surname
+     * @param car
+     * @param plate
+     * @param capacity
+     * @param token
+	 */
     public UserEntity (int id, String login, String password, String name, String surname,
                       String car, String plate, int capacity, String token) {
         this.id = id;

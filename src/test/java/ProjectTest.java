@@ -17,7 +17,7 @@ public class ProjectTest {
 		UserDAO dao = mock(UserDAO.class);
 		when(UserDAO.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
 		UserEntity u1 = new UserEntity(2, "Vasya", "vasss", "Vasya", "Clean", "Volga", "AA5555AA", 1, "sometoken");
-		UserEntity u2 = dao.getUser("admin", "adminpass");
+		UserEntity u2 = UserDAO.getUser("admin", "adminpass");
 		assertNotEquals(u1, u2);
 	}
 
@@ -26,7 +26,7 @@ public class ProjectTest {
 		UserDAO dao = mock(UserDAO.class);
 		when(UserDAO.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
 		UserEntity u1 = new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken");
-		UserEntity u2 = dao.getUser("admin", "adminpass");
+		UserEntity u2 = UserDAO.getUser("admin", "adminpass");
 		assertEquals(u1, u2);
 	}
 
