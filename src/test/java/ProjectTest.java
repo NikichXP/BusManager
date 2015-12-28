@@ -30,5 +30,12 @@ public class ProjectTest {
 		userEnt2.setToken("someToken"); 
 		assertEquals(userEnt1, userEnt2); 
 	} 
+	
+	@Test 
+	public void usersNotEqual() { 
+		RouteRest rest = mock(RouteRest.class); 
+		when(rest.addClient("someToken", "1")).thenReturn("Success!"); 
+		assertEquals("Success!", rest.addClient("someToken", "1")); 
+	}
 
 }
