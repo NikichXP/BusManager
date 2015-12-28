@@ -22,12 +22,14 @@ public class ProjectTest {
 	}
 
 	@Test
-	public void usersEqual() {
-		UserDAO dao = mock(UserDAO.class);
-		when(UserDAO.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
-		UserEntity u1 = new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken");
-		UserEntity u2 = UserDAO.getUser("admin", "adminpass");
-		assertEquals(u1, u2);
+	public void iterator_will_return_hello_world() {
+		//подготавливаем
+		Iterator i = mock(Iterator.class);
+		when(i.next()).thenReturn("Hello").thenReturn("World");
+		//выполняем
+		String result = i.next()+" "+i.next();
+		//сравниваем
+		assertEquals("Hello World", result);
 	}
 
 }
