@@ -8,6 +8,8 @@ import org.junit.Test;
 import rest.UserRest;
 import dao.entity.UserEntity; 
 import rest.RouteRest;
+import dao.entity.RouteEntity;
+import rest.AdminRest;
 
 public class ProjectTest {
 	
@@ -39,5 +41,18 @@ public class ProjectTest {
 		when(rest.addClient("someToken", "1")).thenReturn("Success!"); 
 		assertEquals("Success!", rest.addClient("someToken", "1")); 
 	}
+	
+	@Test 
+	public void testRouteEntity () { 
+		RouteEntity re1 = new RouteEntity(1, 2, 3); 
+		RouteEntity re2 = new RouteEntity(2, 2, 4); 
+		assertNotEquals(re1, re2); 
+	}
 
+	@Test 
+	void adminTest () { 
+		AdminRest rest = mock(AdminRest.class); 
+		when(rest.createBus("TATA", "53")).thenReturn("Success!"); 
+		assertEquals("Success", rest); 
+	}
 }
