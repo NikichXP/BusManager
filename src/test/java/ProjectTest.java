@@ -20,14 +20,4 @@ public class ProjectTest {
 		assertEquals("true", ur.validate("truetoken"));
 	}
 
-	@Test
-	public void iterator_will_return_hello_world() {
-		//подготавливаем
-		Iterator i = mock(Iterator.class);
-		when(i.next()).thenReturn("Hello").thenReturn("World");
-		String result = i.next()+" "+i.next();
-		//сравниваем
-		assertEquals("Hello World", result);
-	}
-
 }
