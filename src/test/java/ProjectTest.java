@@ -22,6 +22,7 @@ public class ProjectTest {
 	}
 
 	@Test
+<<<<<<< HEAD
 	public void testEntity() throws Exception {
 		UserEntity userEnt1 = new UserEntity(1, "admin", "pass", "name", "surname", "car", "no", 1, "someToken");
 		UserEntity userEnt2 = new UserEntity(1, "admin", "pass", "name", "surname", "car", "no", 1);
@@ -34,6 +35,15 @@ public class ProjectTest {
 		RouteRest rest = mock(RouteRest.class);
 		when(rest.addClient("someToken", "1")).thenReturn("Success!");
 		assertEquals("Success!", rest.addClient("someToken", "1"));
+=======
+	public void iterator_will_return_hello_world() {
+		//подготавливаем
+		Iterator i = mock(Iterator.class);
+		when(i.next()).thenReturn("Hello").thenReturn("World");
+		String result = i.next()+" "+i.next();
+		//сравниваем
+		assertEquals("Hello World", result);
+>>>>>>> parent of c7a2952... Final
 	}
 
 }
