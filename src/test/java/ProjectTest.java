@@ -18,7 +18,7 @@ public class ProjectTest {
 		when(UserDAO.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
 		UserEntity u1 = new UserEntity(2, "Vasya", "vasss", "Vasya", "Clean", "Volga", "AA5555AA", 1, "sometoken");
 		UserEntity u2 = UserDAO.getUser("admin", "adminpass");
-		assertNotEquals(u1, u2);
+		assertNotEquals(u1.getId(), u2.getId());
 	}
 
 	@Test
