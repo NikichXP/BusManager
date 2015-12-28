@@ -22,20 +22,4 @@ public class ProjectTest {
 		when(ur.validate("truetoken")).thenReturn("true");
 		assertEquals("true", ur.validate("truetoken"));
 	}
-	
-	@Test 
-	public void testUserEntity() throws Exception { 
-		UserEntity userEnt1 = new UserEntity(1, "admin", "pass", "name", "surname", "car", "no", 1, "someToken"); 
-		UserEntity userEnt2 = new UserEntity(1, "admin", "pass", "name", "surname", "car", "no", 1); 
-		userEnt2.setToken("someToken"); 
-		assertEquals(userEnt1, userEnt2); 
-	} 
-	
-	@Test 
-	public void usersNotEqual() { 
-		RouteRest rest = mock(RouteRest.class); 
-		when(rest.addClient("someToken", "1")).thenReturn("Success!"); 
-		assertEquals("Success!", rest.addClient("someToken", "1")); 
-	}
-
 }
