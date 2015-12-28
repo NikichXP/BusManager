@@ -5,6 +5,7 @@ import java.util.Iterator;
 import dao.UserDAO;
 import dao.entity.UserEntity;
 import org.junit.Test;
+import rest.UserRest;
 
 public class ProjectTest {
 	@Test
@@ -14,11 +15,9 @@ public class ProjectTest {
 
 	@Test
 	public void usersNotEqual() {
-		UserDAO mock = mock(UserDAO.class);
-		when(mock.getUser("admin", "adminpass")).thenReturn(new UserEntity(1, "admin", "adminpass", "Admin", "Adminovich", "Brabus", "AA5555AA", 1, "sometoken"));
-		UserEntity u1 = new UserEntity(2, "Vasya", "vasss", "Vasya", "Clean", "Volga", "AA5555AA", 1, "sometoken");
-		UserEntity u2 = mock.getUser("admin", "adminpass");
-		assertNotEquals(u1.getId(), u2.getId());
+		UserRest ur = mock(UserRest.class);
+		when(ur.validate("truetoken")).thenReturn("true");
+		assertEquals("true", ur.validate("truetoken"));
 	}
 
 	@Test
@@ -26,7 +25,6 @@ public class ProjectTest {
 		//подготавливаем
 		Iterator i = mock(Iterator.class);
 		when(i.next()).thenReturn("Hello").thenReturn("World");
-		//выполняем
 		String result = i.next()+" "+i.next();
 		//сравниваем
 		assertEquals("Hello World", result);
