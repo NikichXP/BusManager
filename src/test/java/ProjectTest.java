@@ -29,8 +29,8 @@ public class ProjectTest {
 	
 	@Test 
 	public void testUserEntity() throws Exception { 
-		UserEntity userEnt1 = new UserEntity(1, "admin", "pass", "name", "surname", "car", "no", 1, "someToken"); 
-		UserEntity userEnt2 = new UserEntity(1, "admin", "pass", "name", "surname", "car", "no", 1); 
+		UserEntity userEnt1 = new UserEntity(1, "admin", "pass", "name", "surname", "someToken"); 
+		UserEntity userEnt2 = new UserEntity(1, "admin", "pass", "name", "surname"); 
 		userEnt2.setToken("someToken"); 
 		assertEquals(userEnt1, userEnt2); 
 	} 
