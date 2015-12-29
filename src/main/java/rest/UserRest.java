@@ -33,12 +33,11 @@ public class UserRest {
     @GET
     @Path("register")
     public String register(@QueryParam("login") String login, @QueryParam("pass") String pass, @QueryParam("name") String name,
-                           @QueryParam("surname") String surname, @QueryParam("car") String car, @QueryParam("plate") String plate,
-                           @QueryParam("capacity") String capacity) {
-        if (login == null || pass == null || name == null || surname == null || car == null || plate == null || capacity == null) {
+                           @QueryParam("surname") String surname) {
+        if (login == null || pass == null || name == null || surname == null) {
             return gson.toJson(new Error("One or more fields are null"));
         }
-        UserDAO.createUser(login, pass, name, surname, car, plate, Integer.parseInt(capacity));
+        UserDAO.createUser(login, pass, name, surname);
         return auth(login,pass);
     }
 

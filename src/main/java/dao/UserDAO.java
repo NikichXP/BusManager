@@ -37,9 +37,6 @@ public class UserDAO {
                     rs.getString("password"),
                     rs.getString("name"),
                     rs.getString("surname"),
-                    rs.getString("car"),
-                    rs.getString("plate"),
-                    rs.getInt("capacity"),
                     uuid.toString()
             );
             DataContainer.addToken(uuid.toString(), u);
@@ -49,11 +46,10 @@ public class UserDAO {
         }
     }
 
-    public static boolean createUser(String login, String pass, String name, String surname, String car, String plate, int capacity) {
+    public static boolean createUser(String login, String pass, String name, String surname) {
         try {
-            Query.updateQuery("INSERT INTO user (`login`, `password`, `name`, `surname`, `car`, `plate`, `capacity`) VALUES ('" +
-                    login + "', '" + pass + "', '" + name + "', '" + surname + "', '" + car + "', '" + plate +
-                    " ', '" + capacity + "');");
+            Query.updateQuery("INSERT INTO user (`login`, `password`, `name`, `surname`) VALUES ('" +
+                    login + "', '" + pass + "', '" + name + "', '" + surname + "');");
             return true;
         } catch (Exception e) {
             return false;

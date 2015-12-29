@@ -34,6 +34,7 @@ public class RouteRest {
         }
         return gson.toJson(new Error ("Wrong token"));
         */
+
         RouteEntity ent = new RouteEntity(Integer.parseInt(tripid), Integer.parseInt(from), Integer.parseInt(to));
         ent.setToken(token);
         ent.setCar(BusDAO.getBus(carid));

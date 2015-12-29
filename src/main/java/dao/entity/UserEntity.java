@@ -11,22 +11,15 @@ public class UserEntity {
     private String password;
     private String name;
     private String surname;
-    private String car;
-    private String plate;
-    private int capacity;
     private String token;
 
     @Deprecated
-    public UserEntity (int id, String login, String password, String name, String surname,
-                      String car, String plate, int capacity) {
+    public UserEntity (int id, String login, String password, String name, String surname) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.car = car;
-        this.plate = plate;
-        this.capacity = capacity;
         this.token = UUID.randomUUID().toString();
         DataContainer.addToken(this.token, this);
     }
@@ -38,21 +31,14 @@ public class UserEntity {
      * @param password
      * @param name
      * @param surname
-     * @param car
-     * @param plate
-     * @param capacity
      * @param token
 	 */
-    public UserEntity (int id, String login, String password, String name, String surname,
-                      String car, String plate, int capacity, String token) {
+    public UserEntity (int id, String login, String password, String name, String surname, String token) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.car = car;
-        this.plate = plate;
-        this.capacity = capacity;
         this.token = token;
     }
 
@@ -96,30 +82,6 @@ public class UserEntity {
         this.surname = surname;
     }
 
-    public String getCar() {
-        return car;
-    }
-
-    public void setCar(String car) {
-        this.car = car;
-    }
-
-    public String getPlate() {
-        return plate;
-    }
-
-    public void setPlate(String plate) {
-        this.plate = plate;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     public String getToken() {
         return token;
     }
@@ -135,17 +97,13 @@ public class UserEntity {
 
         UserEntity that = (UserEntity) o;
 
-        if (capacity != that.capacity) return false;
         if (id != that.id) return false;
-        if (car != null ? !car.equals(that.car) : that.car != null) return false;
         if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (plate != null ? !plate.equals(that.plate) : that.plate != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        return token != null ? token.equals(that.token) : that.token == null;
 
-        return true;
     }
 
     @Override
@@ -155,9 +113,6 @@ public class UserEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (car != null ? car.hashCode() : 0);
-        result = 31 * result + (plate != null ? plate.hashCode() : 0);
-        result = 31 * result + capacity;
         result = 31 * result + (token != null ? token.hashCode() : 0);
         return result;
     }
