@@ -11,3 +11,6 @@ gen
 *.jar
 *.war
 *.ear
+/moduleWAR/build/
+/moduleEJB/build/
+/moduleEJB/dist/

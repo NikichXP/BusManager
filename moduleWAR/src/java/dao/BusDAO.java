@@ -1,6 +1,5 @@
 package dao;
 
-import com.google.gson.JsonElement;
 import dao.entity.BusEntity;
 import rest.Query;
 
@@ -17,7 +16,7 @@ public class BusDAO {
         }
         return instance;
     }
-    private BusDAO () {
+    public BusDAO () {
     }
 
 
