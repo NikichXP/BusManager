@@ -1,0 +1,127 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://busmanager-1175.appspot.com/_ah/api",
+  "name" : "route",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "discovery" : [ "PUBLIC" ],
+  "adapter" : {
+    "bns" : "https://busmanager-1175.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "route.getById" : {
+      "path" : "get",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.RouteAPI.getById",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Route" : {
+        "id" : "Route",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "from" : {
+            "$ref" : "City"
+          },
+          "to" : {
+            "$ref" : "City"
+          },
+          "time" : {
+            "type" : "string"
+          },
+          "days" : {
+            "type" : "array",
+            "items" : {
+              "type" : "boolean"
+            }
+          },
+          "car" : {
+            "$ref" : "Car"
+          }
+        }
+      },
+      "City" : {
+        "id" : "City",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "x" : {
+            "type" : "number"
+          },
+          "y" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Car" : {
+        "id" : "Car",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "model" : {
+            "type" : "string"
+          },
+          "seats" : {
+            "type" : "integer"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.busmanager.rest.v1.RouteAPI.getById" : {
+        "response" : {
+          "$ref" : "Route"
+        }
+      }
+    }
+  }
+}

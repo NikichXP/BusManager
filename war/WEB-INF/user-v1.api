@@ -1,0 +1,209 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://busmanager-1175.appspot.com/_ah/api",
+  "name" : "user",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "discovery" : [ "PUBLIC" ],
+  "adapter" : {
+    "bns" : "https://busmanager-1175.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "user.register" : {
+      "path" : "register",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.register",
+      "request" : {
+        "parameters" : {
+          "name" : {
+            "type" : "string",
+            "required" : true
+          },
+          "pass" : {
+            "type" : "string",
+            "required" : true
+          },
+          "login" : {
+            "type" : "string",
+            "required" : true
+          },
+          "surname" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "user.deleteByKey" : {
+      "path" : "deleteByKey",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.deteleByKey",
+      "request" : {
+        "parameters" : {
+          "key" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "user.deleteById" : {
+      "path" : "deleteById",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.deteleById",
+      "request" : {
+        "parameters" : {
+          "key" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "user.login" : {
+      "path" : "login",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.login",
+      "request" : {
+        "parameters" : {
+          "login" : {
+            "type" : "string",
+            "required" : true
+          },
+          "pass" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "user.userAPI.ping" : {
+      "path" : "ping",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.ping",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Text" : {
+        "id" : "Text",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "User" : {
+        "id" : "User",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "login" : {
+            "type" : "string"
+          },
+          "pass" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "surname" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.busmanager.rest.v1.UserAPI.register" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.UserAPI.deteleByKey" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.UserAPI.deteleById" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.UserAPI.login" : {
+        "response" : {
+          "$ref" : "User"
+        }
+      },
+      "com.busmanager.rest.v1.UserAPI.ping" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      }
+    }
+  }
+}

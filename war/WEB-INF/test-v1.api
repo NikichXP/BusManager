@@ -1,0 +1,121 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://busmanager-1175.appspot.com/_ah/api",
+  "name" : "test",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "discovery" : [ "PUBLIC" ],
+  "adapter" : {
+    "bns" : "https://busmanager-1175.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "test.ping" : {
+      "path" : "ping",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.TestAPI.ping",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "test.userList" : {
+      "path" : "userList",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.TestAPI.getUser",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Text" : {
+        "id" : "Text",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "User" : {
+        "id" : "User",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "login" : {
+            "type" : "string"
+          },
+          "pass" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "surname" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UserCollection" : {
+        "id" : "UserCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "User"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.busmanager.rest.v1.TestAPI.ping" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.TestAPI.getUser" : {
+        "response" : {
+          "$ref" : "UserCollection"
+        }
+      }
+    }
+  }
+}

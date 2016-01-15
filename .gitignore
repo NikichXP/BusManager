@@ -11,3 +11,9 @@ gen
 *.jar
 *.war
 *.ear
+
+war/WEB-INF/appengine-generated/*
+war/WEB-INF/classes/*
+.settings/*
+.classpath
+.project
