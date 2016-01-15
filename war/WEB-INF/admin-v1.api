@@ -25,66 +25,6 @@
     "maxAge" : 0
   },
   "methods" : {
-    "admin.route.getAll" : {
-      "path" : "listRoute",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listRoutes",
-      "request" : {
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "admin.city.getAll" : {
-      "path" : "listCity",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listCities",
-      "request" : {
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "admin.user.getAll" : {
-      "path" : "listUser",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listUsers",
-      "request" : {
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "admin.car.getAll" : {
-      "path" : "listCar",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listCars",
-      "request" : {
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "admin.city.create" : {
       "path" : "createCity",
       "httpMethod" : "GET",
@@ -159,6 +99,66 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "admin.car.getAll" : {
+      "path" : "listCar",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listCars",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "admin.user.getAll" : {
+      "path" : "listUser",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listUsers",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "admin.city.getAll" : {
+      "path" : "listCity",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listCities",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "admin.route.getAll" : {
+      "path" : "listRoute",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.AdminTools.listRoutes",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "admin.listAll" : {
       "path" : "listAll",
       "httpMethod" : "GET",
@@ -177,6 +177,15 @@
   },
   "descriptor" : {
     "schemas" : {
+      "Text" : {
+        "id" : "Text",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
       "_any" : {
         "id" : "_any",
         "type" : "any"
@@ -190,15 +199,6 @@
             "items" : {
               "$ref" : "_any"
             }
-          }
-        }
-      },
-      "Text" : {
-        "id" : "Text",
-        "type" : "object",
-        "properties" : {
-          "value" : {
-            "type" : "string"
           }
         }
       },
@@ -219,12 +219,17 @@
       }
     },
     "methods" : {
-      "com.busmanager.rest.v1.AdminTools.listRoutes" : {
+      "com.busmanager.rest.v1.AdminTools.createCity" : {
         "response" : {
-          "$ref" : "_anyCollection"
+          "$ref" : "Text"
         }
       },
-      "com.busmanager.rest.v1.AdminTools.listCities" : {
+      "com.busmanager.rest.v1.AdminTools.createRoute" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.AdminTools.listCars" : {
         "response" : {
           "$ref" : "_anyCollection"
         }
@@ -234,19 +239,14 @@
           "$ref" : "_anyCollection"
         }
       },
-      "com.busmanager.rest.v1.AdminTools.listCars" : {
+      "com.busmanager.rest.v1.AdminTools.listCities" : {
         "response" : {
           "$ref" : "_anyCollection"
         }
       },
-      "com.busmanager.rest.v1.AdminTools.createCity" : {
+      "com.busmanager.rest.v1.AdminTools.listRoutes" : {
         "response" : {
-          "$ref" : "Text"
-        }
-      },
-      "com.busmanager.rest.v1.AdminTools.createRoute" : {
-        "response" : {
-          "$ref" : "Text"
+          "$ref" : "_anyCollection"
         }
       },
       "com.busmanager.rest.v1.AdminTools.listAll" : {

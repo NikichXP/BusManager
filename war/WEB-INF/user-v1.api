@@ -58,6 +58,46 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "user.login" : {
+      "path" : "login",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.login",
+      "request" : {
+        "parameters" : {
+          "login" : {
+            "type" : "string",
+            "required" : true
+          },
+          "pass" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "user.userAPI.ping" : {
+      "path" : "ping",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.ping",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "user.deleteByKey" : {
       "path" : "deleteByKey",
       "httpMethod" : "GET",
@@ -94,46 +134,6 @@
             "required" : true
           }
         },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "user.login" : {
-      "path" : "login",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.login",
-      "request" : {
-        "parameters" : {
-          "login" : {
-            "type" : "string",
-            "required" : true
-          },
-          "pass" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "user.userAPI.ping" : {
-      "path" : "ping",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.UserAPI.ping",
-      "request" : {
         "body" : "empty"
       },
       "response" : {
@@ -184,22 +184,22 @@
           "$ref" : "Text"
         }
       },
-      "com.busmanager.rest.v1.UserAPI.deteleByKey" : {
-        "response" : {
-          "$ref" : "Text"
-        }
-      },
-      "com.busmanager.rest.v1.UserAPI.deteleById" : {
-        "response" : {
-          "$ref" : "Text"
-        }
-      },
       "com.busmanager.rest.v1.UserAPI.login" : {
         "response" : {
           "$ref" : "User"
         }
       },
       "com.busmanager.rest.v1.UserAPI.ping" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.UserAPI.deteleByKey" : {
+        "response" : {
+          "$ref" : "Text"
+        }
+      },
+      "com.busmanager.rest.v1.UserAPI.deteleById" : {
         "response" : {
           "$ref" : "Text"
         }

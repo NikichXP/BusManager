@@ -25,17 +25,21 @@
     "maxAge" : 0
   },
   "methods" : {
-    "car.searchName" : {
-      "path" : "search",
+    "car.create" : {
+      "path" : "create",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.CarAPI.searchCarByName",
+      "rosyMethod" : "com.busmanager.rest.v1.CarAPI.createCar",
       "request" : {
         "parameters" : {
-          "name" : {
+          "model" : {
+            "type" : "string",
+            "required" : true
+          },
+          "seats" : {
             "type" : "string",
             "required" : true
           }
@@ -67,21 +71,17 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "car.create" : {
-      "path" : "create",
+    "car.searchName" : {
+      "path" : "search",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.busmanager.rest.v1.CarAPI.createCar",
+      "rosyMethod" : "com.busmanager.rest.v1.CarAPI.searchCarByName",
       "request" : {
         "parameters" : {
-          "model" : {
-            "type" : "string",
-            "required" : true
-          },
-          "seats" : {
+          "name" : {
             "type" : "string",
             "required" : true
           }
@@ -116,6 +116,15 @@
   },
   "descriptor" : {
     "schemas" : {
+      "Text" : {
+        "id" : "Text",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
       "Car" : {
         "id" : "Car",
         "type" : "object",
@@ -143,21 +152,12 @@
             }
           }
         }
-      },
-      "Text" : {
-        "id" : "Text",
-        "type" : "object",
-        "properties" : {
-          "value" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
-      "com.busmanager.rest.v1.CarAPI.searchCarByName" : {
+      "com.busmanager.rest.v1.CarAPI.createCar" : {
         "response" : {
-          "$ref" : "CarCollection"
+          "$ref" : "Text"
         }
       },
       "com.busmanager.rest.v1.CarAPI.getCar" : {
@@ -165,9 +165,9 @@
           "$ref" : "Car"
         }
       },
-      "com.busmanager.rest.v1.CarAPI.createCar" : {
+      "com.busmanager.rest.v1.CarAPI.searchCarByName" : {
         "response" : {
-          "$ref" : "Text"
+          "$ref" : "CarCollection"
         }
       },
       "com.busmanager.rest.v1.CarAPI.searchCarsByMinSeats" : {

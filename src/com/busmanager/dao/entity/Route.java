@@ -2,10 +2,8 @@ package com.busmanager.dao.entity;
 
 import java.util.Arrays;
 
-import com.busmanager.dao.CarDAO;
 import com.busmanager.dao.CityDAO;
 import com.googlecode.objectify.annotation.*;
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @Entity
 public class Route {
@@ -22,29 +20,25 @@ public class Route {
 	private String time;
 	@Index
 	private boolean[] days;
-	@Index
-	private Car car;
 
 	@Deprecated
 	public Route() {
 	}
 
-	public Route(long id, String title, long from, long to, String time, long car) {
+	public Route(long id, String title, long from, long to, String time) {
 		this.id = id;
 		this.title = title;
-		this.from = (City) ofy().load().kind("City").id(from).now();
-		this.to = (City) ofy().load().kind("City").id(to).now();
+		this.from = CityDAO.findByName(String.valueOf(from));
+		this.to = CityDAO.findByName(String.valueOf(to));
 		this.time = time;
-		this.car = (Car) ofy().load().kind("Car").id(car).now();
 	}
 
-	public Route(long id, String title, String from, String to, String time, String day, String carId) {
+	public Route(long id, String title, String from, String to, String time, String day) {
 		this.id = id;
 		this.title = title;
 		this.from = CityDAO.findByName(from);
 		this.to = CityDAO.findByName(to);
 		this.time = time;
-		this.car = CarDAO.getCar(id);
 		this.days = new boolean[7];
 		for (char c : day.toCharArray()) {
 			switch (c) {
@@ -128,19 +122,12 @@ public class Route {
 		this.days = days;
 	}
 
-	public Car getCar() {
-		return car;
-	}
-
-	public void setCar(Car car) {
-		this.car = car;
-	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((car == null) ? 0 : car.hashCode());
 		result = prime * result + Arrays.hashCode(days);
 		result = prime * result + ((from == null) ? 0 : from.hashCode());
 		result = (int) (prime * result + id);
@@ -162,13 +149,6 @@ public class Route {
 			return false;
 		}
 		Route other = (Route) obj;
-		if (car == null) {
-			if (other.car != null) {
-				return false;
-			}
-		} else if (!car.equals(other.car)) {
-			return false;
-		}
 		if (!Arrays.equals(days, other.days)) {
 			return false;
 		}

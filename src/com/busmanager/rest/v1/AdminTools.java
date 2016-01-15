@@ -27,8 +27,8 @@ public class AdminTools {
 	public Text createRoute (@Named("title") String title, @Named ("from") String from, @Named ("to") String to,
 								@Named("time") String time, @Named ("days") String days, @Named ("carid") String carId, 
 								@Named ("id") String id) {
-		RouteDAO.createRoute(id, title, from, to, time, days, carId);
-		return new Text ("Fuck");
+		String sync = RouteDAO.createRoute(id, title, from, to, time, days);
+		return new Text (sync);
 	}
 
 	//  <--- Get-All Methods! Delete on release! --->

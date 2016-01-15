@@ -1,5 +1,6 @@
 package com.busmanager.rest.v1;
 
+import com.busmanager.DataContainer;
 import com.busmanager.Text;
 import com.busmanager.dao.UserDAO;
 import com.busmanager.dao.entity.User;
@@ -11,6 +12,7 @@ public class UserAPI {
 	@ApiMethod (name = "login", httpMethod = "GET", path = "login")
 	public User login (@Named ("login") String login, @Named ("pass") String pass) {
 		User u = UserDAO.get(login, pass);
+		DataContainer.addToken(u);
 		return u;
 	}
 	
